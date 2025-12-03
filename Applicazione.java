@@ -31,8 +31,11 @@ public class Applicazione {
             mostraMenu();
 
             try {
+             //Legge direttamente un numero intero come scelta del menu
         
                 int scelta = scanner.nextInt();
+
+                // Gestisce le varie opzioni del menu
                 switch (scelta) {
                     case 1 -> aggiungiArticolo();
                     case 2 -> visualizzaLista();
@@ -55,7 +58,8 @@ public class Applicazione {
             }
         }
     }
-    // Permette di aggiungere un nuovo articolo alla lista
+
+    // Metodo che stampa graficamente le opzioni del menu
     private void mostraMenu() {
         System.out.println("\n╔══════════════════════════════════════╗");
         System.out.println("║    GESTIONE LISTA DELLA SPESA        ║");
@@ -73,50 +77,69 @@ public class Applicazione {
         System.out.print("Scegli (1-9): ");
     }
 
+    // Metodo per aggiungere un nuovo articolo inserito dall'utente
     private void aggiungiArticolo() {
+
+        // Legge la categoria dell'articolo
         System.out.print("Inserisci nome articolo: ");
         String nome = scanner.next();
 
+        // Legge la categoria dell'articolo
         System.out.print("Inserisci categoria: ");
         String categoria = scanner.next();
 
+        // Legge il prezzo e lo converte in numero decimale
         System.out.print("Inserisci prezzo unitario: ");
         double prezzo = Double.parseDouble(scanner.next());
         System.out.printf("€%.2f\n", prezzo);
 
-
+        // Legge la quantità da acquistare
         System.out.print("Inserisci quantità: ");
         int quantita = Integer.parseInt(scanner.next());
 
+        // Crea una mappa con le proprietà dell'articolo
         Map<String, Object> articolo = new HashMap<>();
         articolo.put("nome", nome);
         articolo.put("categoria", categoria);
         articolo.put("prezzo", prezzo);
         articolo.put("quantita", quantita);
-        articolo.put("acquistato", false);
+        articolo.put("acquistato", false);  // Articolo inizialmente non acquistato
 
+        // Aggiunge l'articolo nella lista principale
         articoli.add(articolo);
 
         System.out.println("✓ Articolo aggiunto!");
     }
 
+    // Metodo che mostra a schermo tutti gli articoli presenti nella lista
     private void visualizzaLista() {
+
+        // Controlla se la lista è vuota
         if (articoli.isEmpty()) {
             System.out.println("Lista vuota!");
             return;
         }
 
-        System.out.println("\nLISTA DELLA SPESA:");
+        System.out.println("\n═══════════════════════════════════════\r\n" + //
+                        "    LISTA DELLA SPESA\r\n" + //
+                        "═══════════════════════════════════════");
 
-        int i = 1;
+        int i = 1;  // Contatore degli articoli mostrati
+
+        // Scorre tutti gli articoli nella lista
         for (Map<String, Object> a : articoli) {
+
+            // Legge se l’articolo è stato acquistato (true/false)
             boolean acq = (boolean) a.get("acquistato");
+
+            // Mostra un check se acquistato, altrimenti una casella vuota
             String box = acq ? "[✓]" : "[ ]";
 
+            // Stampa l'articolo in formato leggibile
             System.out.printf("%s %d. %s - %s €%.2f x %d\n",
                 box, i, a.get("nome"), a.get("categoria"),
                 a.get("prezzo"), a.get("quantita"));
-            i++;
+            i++;  // Passa al numero successivo
         }
     }
 
