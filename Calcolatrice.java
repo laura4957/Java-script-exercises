@@ -1,6 +1,6 @@
 public class Calcolatrice {
 
-    public static String Calcolatrice(double num1, double num2, String operatore) {
+    public static String Calcola(double num1, double num2, String operatore) {
 
         if (operatore.equals("+")) {
             return String.valueOf(num1 + num2);
@@ -23,10 +23,10 @@ public class Calcolatrice {
     }
 
     public static void main(String[] args) {
-        System.out.println(Calcolatrice(10, 5, "+"));
-        System.out.println(Calcolatrice(3, 5, "-"));
-        System.out.println(Calcolatrice(5, 6, "*"));
-        System.out.println(Calcolatrice(20, 30, "/"));
-        System.out.println(Calcolatrice(36, 0, "/"));
+        System.out.println(Calcola(10, 5, "+"));
+        System.out.println(Calcola(3, 5, "-"));
+        System.out.println(Calcola(5, 6, "*"));
+        System.out.println(Calcola(20, 30, "/"));
+        System.out.println(Calcola(36, 0, "/"));
     }
-}
+} 
